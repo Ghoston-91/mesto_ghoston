@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
+  <script defer src="./scripts/scripts.js"></script>
 </head>
 <body class="page">
-  <div class="page__container">
     <header class="header section">
       <a href="#" class="logo"></a>
     </header>
@@ -20,34 +20,83 @@
         class="profile__avatar">
 
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <div class="profile__group-title">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit"></button>
+          </div>
           <p class="profile__subtitle">Исследователь океана</p>
-          <button class="profile__edit"></button>
+
         </div>
 
-        <button class="profile__add-foto">
-          <div class="profile__icon"></div>
-        </button>
+        <button class="add-foto"></button>
       </section>
 
-      <section class="cards section">
+      <ul class="cards section">
+        <li class="card">
+          <img src="./images/card/img1.jpg" alt="Храм" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Карачаевск</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
 
-      </section>
+        <li class="card">
+          <img src="./images/card/img2.jpg" alt="Закат" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Гора Эльбрус</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
+
+        <li class="card">
+          <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Домбай</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
+
+        <li class="card">
+          <img src="./images/card/img2.jpg" alt="Гора" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Гора Эльбрус</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
+
+        <li class="card">
+          <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Домбай</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
+
+        <li class="card">
+          <img src="./images/card/img1.jpg" alt="Гора" class="card__img">
+          <div class="card__down">
+            <p class="card__title">Карачаевск</p>
+            <div class="card__like"></div>
+          </div>
+        </li>
+      </ul>
     </main>
 
     <footer class="footer section">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-  </div>
 
   <section class="modal">
     <div class="modal__content">
       <button class="modal__close"></button>
-      <div class="modal__text">
-        <p class="modal__title"></p>
-        <p class="modal__paragraph"></p>
-      </div>
+      <h2 class="modal__title">Редактировать профиль</h2>
+      <form action="" class="modal__form">
+        <input type="text" class="modal__input modal__input_name">
+        <input type="text" class="modal__input modal__input_subtitle">
+        <button class="modal__save">Сохранить</button>
+      </form>
+
     </div>
   </section>
 </body>

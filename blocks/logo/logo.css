@@ -5,3 +5,9 @@
   height: 33px;
   display: flex;
 }
+@media screen and (min-width: 320px) and (max-width: 684px) {
+  .logo {
+    margin-top: 28px;
+    margin-left: 27px;
+  }
+}

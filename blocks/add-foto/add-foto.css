@@ -1,0 +1,23 @@
+.add-foto {
+  width: 150px;
+  height: 50px;
+  background: none;
+  background-image: url('../../images/add_foto.svg');
+  background-repeat: no-repeat;
+  background-size: 22px;
+  border: 2px solid #fff;
+  background-position: center;
+  margin-left: auto;
+}
+
+.add-foto:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+@media screen and (min-width: 320px) and (max-width: 684px) {
+  .add-foto {
+    margin-left: 0;
+    margin-top: 36px;
+    width: calc(100% - 38px);
+  }
+}

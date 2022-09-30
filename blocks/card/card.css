@@ -1,0 +1,11 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  max-width: 282px;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
