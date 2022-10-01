@@ -14,7 +14,7 @@
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__group-title/profile__group-title.css');
 @import url('../blocks/profile/__name/profile__name.css');
-@import url('../blocks/profile/__subtitle/profile__subtitle.css');
+@import url('../blocks/profile/__job/profile__job.css');
 @import url('../blocks/profile/__edit/profile__edit.css');
 @import url('../blocks/add-foto/add-foto.css');
 
@@ -41,4 +41,4 @@
 @import url('../blocks/modal/__title/modal__title.css');
 @import url('../blocks/modal/__save/modal__save.css');
 @import url('../blocks/modal/__input/_name/modal__input_name.css');
-@import url('../blocks/modal/__input/_subtitle/modal__input_subtitle.css');
+@import url('../blocks/modal/__input/_job/modal__input_job.css');
