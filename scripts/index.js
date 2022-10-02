@@ -14,7 +14,7 @@ const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__job');
 
 
-// слушатель с функцией, чтобы открыть попап
+// слушатель с функцией, чтобы открыть попап и присвоить полям данные из профиля
 profileEdit.addEventListener('click',() => {
   modal.classList.add(modalOpen);
 
