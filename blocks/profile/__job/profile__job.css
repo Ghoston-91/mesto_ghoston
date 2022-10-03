@@ -10,7 +10,7 @@
 }
 @media screen and (min-width: 596px) and (max-width: 900px) {
   .profile__job {
-    max-width: 340px
+    max-width: 340px;
   }
 }
 

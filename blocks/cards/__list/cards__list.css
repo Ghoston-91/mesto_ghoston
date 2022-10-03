@@ -16,6 +16,5 @@
   .cards__list {
     grid-template-columns: repeat(1, auto);
     justify-items: center;
-    margin-top: 36px;
   }
 }
