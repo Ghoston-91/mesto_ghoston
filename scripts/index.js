@@ -8,24 +8,31 @@ const modalForm = modal.querySelector('.modal__form');
 const closeModalBtn = modal.querySelector('.modal__close');
 const modalContent = modal.querySelector('.modal__content')
 
-const nameInput = modal.querySelector('.modal__input_name');
-const jobInput = modal.querySelector('.modal__input_job');
+const nameInput = modal.querySelector('.modal__input_type_name');
+const jobInput = modal.querySelector('.modal__input_type_job');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__job');
 
 
 // слушатель с функцией, чтобы открыть попап и присвоить полям данные из профиля
-profileEdit.addEventListener('click',() => {
+function funModalOpen () {
   modal.classList.add(modalOpen);
 
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-});
+}
+profileEdit.addEventListener('click',funModalOpen);
 
 
-// слушатель с функцией, чтобы закрыть попап
+// слушатель с функцией, чтобы закрыть попап по крестику
 modal.addEventListener('click',(event) => {
-  if(!modalContent.contains(event.target) || event.target === closeModalBtn)  {
+  if(event.target === closeModalBtn)  {
+    modal.classList.remove(modalOpen);
+  }
+});
+// слушатель с функцией, чтобы закрыть попап по нажатию оверлея
+modal.addEventListener('mousedown',(event) => {
+  if(!modalContent.contains(event.target))  {
     modal.classList.remove(modalOpen);
   }
 });

@@ -8,6 +8,7 @@
   <title>Mesto</title>
 </head>
 <body class="page">
+
     <header class="header section">
       <a href="#" class="logo"></a>
     </header>
@@ -21,64 +22,66 @@
         <div class="profile__info">
           <div class="profile__group-title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit"></button>
+            <button aria-label="profile-edit" type="button" class="profile__edit"></button>
           </div>
           <p class="profile__job">Исследователь океана</p>
-
         </div>
 
-        <button class="add-foto"></button>
+        <button aria-label="add-foto" type="button" class="add-foto"></button>
       </section>
 
-      <ul class="cards section">
-        <li class="card">
-          <img src="./images/card/img1.jpg" alt="Храм" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Карачаевск</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
+      <section class="cards section">
+        <ul class="cards__list">
 
-        <li class="card">
-          <img src="./images/card/img2.jpg" alt="Закат" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Гора Эльбрус</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
+          <li class="card">
+            <img src="./images/card/img1.jpg" alt="Храм" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Карачаевск</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
 
-        <li class="card">
-          <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Домбай</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
+          <li class="card">
+            <img src="./images/card/img2.jpg" alt="Закат" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
 
-        <li class="card">
-          <img src="./images/card/img2.jpg" alt="Гора" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Гора Эльбрус</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
+          <li class="card">
+            <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Домбай</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
 
-        <li class="card">
-          <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Домбай</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
+          <li class="card">
+            <img src="./images/card/img2.jpg" alt="Гора" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
 
-        <li class="card">
-          <img src="./images/card/img1.jpg" alt="Гора" class="card__img">
-          <div class="card__down">
-            <p class="card__title">Карачаево-Черкесия</p>
-            <div class="card__like"></div>
-          </div>
-        </li>
-      </ul>
+          <li class="card">
+            <img src="./images/card/img3.jpg" alt="Гора" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Домбай</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img src="./images/card/img1.jpg" alt="Гора" class="card__img">
+            <div class="card__down">
+              <h2 class="card__title">Карачаево-Черкесия</h2>
+              <button aria-label="card-like" type="button" class="card__like"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer class="footer section">
@@ -88,11 +91,11 @@
 
   <section class="modal">
     <div class="modal__content">
-      <button class="modal__close"></button>
-      <h2 class="modal__title">Редактировать профиль</h2>
-      <form class="modal__form">
-        <input type="text" placeholder="Введите ваше имя" name="name_profile" class="modal__input modal__input_name">
-        <input type="text" placeholder="Введите вашу профессию" name="job_profile" class="modal__input modal__input_job">
+      <button aria-label="modal-close" type="button" class="modal__close"></button>
+      <h3 class="modal__title">Редактировать профиль</h3>
+      <form name="form" class="modal__form">
+        <input type="text" placeholder="Введите ваше имя" name="name_profile" class="modal__input modal__input_type_name">
+        <input type="text" placeholder="Введите вашу профессию" name="job_profile" class="modal__input modal__input_type_job">
         <button type="submit" class="modal__save">Сохранить</button>
       </form>
 

@@ -20,6 +20,7 @@
 
 /* cards */
 @import url('../blocks/cards/cards.css');
+@import url('../blocks/cards/__list/cards__list.css');
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__down/card__down.css');
 @import url('../blocks/card/__img/card__img.css');
