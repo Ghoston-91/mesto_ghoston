@@ -23,12 +23,9 @@ function funModalOpen () {
 }
 profileEdit.addEventListener('click',funModalOpen);
 
-
 // слушатель с функцией, чтобы закрыть попап по крестику
-modal.addEventListener('click',(event) => {
-  if(event.target === closeModalBtn)  {
+closeModalBtn.addEventListener('click',() => {
     modal.classList.remove(modalOpen);
-  }
 });
 // слушатель с функцией, чтобы закрыть попап по нажатию оверлея
 modal.addEventListener('mousedown',(event) => {
@@ -36,8 +33,6 @@ modal.addEventListener('mousedown',(event) => {
     modal.classList.remove(modalOpen);
   }
 });
-
-
 // функция для присвоения данных в профиле
 function formSubmitHandler (evt) {
   evt.preventDefault();
