@@ -1,47 +1,113 @@
-const modalOpen = 'modal_active'; // переменная, чтобы активировать попап
+const modalActive = 'modal_active'; // переменная, чтобы активировать попап
 
-const modal = document.querySelector('.modal');
+const btnOpenModal = document.querySelectorAll('[data-modal-button]');
+const btnCloseModal = document.querySelectorAll('[data-modal-close]');
+
+
+const modalForm = document.querySelector('.modal__form');
+
 const profile = document.querySelector('.profile');
-const profileEdit = document.querySelector('.profile__edit');
-
-const modalForm = modal.querySelector('.modal__form');
-const closeModalBtn = modal.querySelector('.modal__close');
-const modalContent = modal.querySelector('.modal__content')
-
-const nameInput = modal.querySelector('.modal__input_type_name');
-const jobInput = modal.querySelector('.modal__input_type_job');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__job');
+const nameInput = document.querySelector('.modal__input_type_name');
+const jobInput = document.querySelector('.modal__input_type_job');
 
 
-// слушатель с функцией, чтобы открыть попап и присвоить полям данные из профиля
-function funModalOpen () {
-  modal.classList.add(modalOpen);
+// Открыть модалку по кнопке
+btnOpenModal.forEach(function (item) {
+  item.addEventListener('click', function () {
+    const modalId = this.dataset.modalButton;
+    const modal = document.querySelector('#' + modalId)
+    modal.classList.add(modalActive);
 
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-}
-profileEdit.addEventListener('click',funModalOpen);
+    // Присвоить полям данные из профиля
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
 
-// слушатель с функцией, чтобы закрыть попап по крестику
-closeModalBtn.addEventListener('click',() => {
-    modal.classList.remove(modalOpen);
-});
-// слушатель с функцией, чтобы закрыть попап по нажатию оверлея
-modal.addEventListener('mousedown',(event) => {
-  if(!modalContent.contains(event.target))  {
-    modal.classList.remove(modalOpen);
-  }
-});
-// функция для присвоения данных в профиле
-function formSubmitHandler (evt) {
+    // Закрытие модалки по крестику
+    btnCloseModal.forEach(function (item) {
+      item.addEventListener('click', function() {
+        const modal = this.closest('[data-modal]');
+        modal.classList.remove(modalActive);
+      })
+    })
+  })
+})
+
+// При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
+modalForm.addEventListener('submit', function(evt) {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
+  
+  const modal = this.closest('[data-modal]');
+  modal.classList.remove(modalActive);
+});
 
-  modal.classList.remove(modalOpen);
+// слушатель с функцией, чтобы закрыть попап по нажатию оверлея
+// modal.addEventListener('mousedown',(event) => {
+//   if(!modalContent.contains(event.target))  {
+//     modal.classList.remove(modalOpen);
+//   }
+// });
+
+
+// Массив с готовыми карточками
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+const cardsList = document.querySelector('.cards__list');
+
+const createCard = function(name, link) {
+  const template = document.querySelector('#template').content;
+  const cardElement = template.querySelector('.card').cloneNode(true);
+  const cardName = cardElement.querySelector('.card__title');
+  const cardImage = cardElement.querySelector('.card__img');
+  const cardLikeActive = 'card__like_active';
+
+  cardName.textContent = name;
+  cardImage.src = link;
+  cardImage.alt = name;
+
+  cardElement.querySelector('.card__like')
+    .addEventListener('click', function(evt){
+      evt.target.classList.toggle(cardLikeActive);
+    });
+
+  return cardElement;
+
+};
+
+const loadCards = function () {
+  initialCards.forEach(function (card) {
+    cardsList.append(createCard(card.name, card.link));
+  });
 }
 
-// слушатель для кнопки сохранить
-modalForm.addEventListener('submit', formSubmitHandler);
+loadCards();
