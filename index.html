@@ -32,9 +32,10 @@
 
       <section class="cards section">
         <ul class="cards__list">
-
-          <!-- <li class="card">
+<!--
+           <li class="card">
             <img src="./images/card/img1.jpg" alt="Храм" class="card__img">
+            <button aria-label="card-delete" type="button" class="card__delete"></button>
             <div class="card__down">
               <h2 class="card__title">Карачаевск</h2>
               <button aria-label="card-like" type="button" class="card__like"></button>
@@ -107,17 +108,25 @@
       <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
       <h3 class="modal__title">Новое место</h3>
       <form name="form" class="modal__form">
-        <input type="text" placeholder="Название" name="name_profile" class="modal__input modal__input_type_name">
-        <input type="text" placeholder="Ссылка на картинку" name="job_profile" class="modal__input modal__input_type_job">
+        <input type="text" placeholder="Название" name="name_foto" class="modal__input name_foto">
+        <input type="text" placeholder="Ссылка на картинку" name="job_profile" class="modal__input type_src">
         <button type="submit" class="modal__save">Создать</button>
       </form>
+    </div>
+  </section>
 
+  <section class="modal modalFullFoto">
+    <div class="modal__content">
+      <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
+      <img src="" alt="" class="card__img">
+      <h3 class="card__title"></h3>
     </div>
   </section>
 
   <template id="template">
     <ul class="element">
       <li class="card">
+        <button aria-label="card-delete" type="button" class="card__delete"></button>
         <img src="" alt="" class="card__img">
             <div class="card__down">
               <h2 class="card__title"></h2>

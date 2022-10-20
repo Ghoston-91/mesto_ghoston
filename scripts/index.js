@@ -12,6 +12,13 @@ const jobProfile = profile.querySelector('.profile__job');
 const nameInput = document.querySelector('.modal__input_type_name');
 const jobInput = document.querySelector('.modal__input_type_job');
 
+const modalAddFoto = document.querySelector('.modalAddFoto')
+const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
+const imageName = document.querySelector('.name_foto');
+const imageSrc = document.querySelector('.type_src');
+
+const modalFullFoto = document.querySelector('.modalFullFoto');
+
 
 // Открыть модалку по кнопке
 btnOpenModal.forEach(function (item) {
@@ -79,6 +86,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
+  
 ];
 
 
@@ -100,6 +108,20 @@ const createCard = function(name, link) {
       evt.target.classList.toggle(cardLikeActive);
     });
 
+    cardElement.querySelector('.card__delete')
+    .addEventListener('click', function(evt) {
+      evt.target.closest('.card').remove()
+    });
+
+    const showImageFull = function () {
+      cardImage.src = link;
+      cardImage.alt = name;
+      cardName.textContent = name;
+      modalFullFoto.classList.add(modalActive);
+    };
+
+    cardImage.addEventListener('click',showImageFull )
+
   return cardElement;
 
 };
@@ -111,3 +133,17 @@ const loadCards = function () {
 }
 
 loadCards();
+
+
+
+// функция сохранения новой карточки
+const saveNewCard = function(evt) {
+  evt.preventDefault();
+  cardsList.prepend(createCard(imageName.value, imageSrc.value));
+  evt.target.reset();
+  modalAddFoto.classList.remove(modalActive);
+}
+
+formSaveNewFoto.addEventListener('submit', saveNewCard)
+
+
