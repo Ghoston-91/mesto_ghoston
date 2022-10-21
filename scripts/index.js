@@ -1,10 +1,9 @@
 const modalActive = 'modal_active'; // переменная, чтобы активировать попап
 
-const btnOpenModal = document.querySelectorAll('[data-modal-button]');
-const btnCloseModal = document.querySelectorAll('[data-modal-close]');
+// const btnOpenModal = document.querySelectorAll('[data-modal-button]');
 
 
-const modalForm = document.querySelector('.modal__form');
+const formModalProfile = document.querySelector('.modalFormProfile');
 
 const profile = document.querySelector('.profile');
 const nameProfile = profile.querySelector('.profile__name');
@@ -12,52 +11,65 @@ const jobProfile = profile.querySelector('.profile__job');
 const nameInput = document.querySelector('.modal__input_type_name');
 const jobInput = document.querySelector('.modal__input_type_job');
 
-const modalAddFoto = document.querySelector('.modalAddFoto')
-const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
 const imageName = document.querySelector('.name_foto');
 const imageSrc = document.querySelector('.type_src');
 
-const modalFullFoto = document.querySelector('.modalFullFoto');
+const modalFullFoto = document.querySelector('.modal__full-foto');
+
+const modalProfile = document.querySelector('.modalProfile');
+const modalAddFoto = document.querySelector('.modalAddFoto');
+const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
+
+const btnOpenModalProfile = document.querySelector('.profile__edit');
+const btnOpenModalAddFoto = document.querySelector('.add-foto');
+
+const btnCloseModal = document.querySelectorAll('.modal__close');
+
+const fullImg = document.querySelector('.fullImg');
+const fullText = document.querySelector('.fullText');
 
 
-// Открыть модалку по кнопке
-btnOpenModal.forEach(function (item) {
-  item.addEventListener('click', function () {
-    const modalId = this.dataset.modalButton;
-    const modal = document.querySelector('#' + modalId)
-    modal.classList.add(modalActive);
+const openModal = function(modal) {
+  modal.classList.add(modalActive);
+};
 
-    // Присвоить полям данные из профиля
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = jobProfile.textContent;
+const closeModal = function(modal) {
+  modal.classList.remove(modalActive);
+};
 
-    // Закрытие модалки по крестику
-    btnCloseModal.forEach(function (item) {
-      item.addEventListener('click', function() {
-        const modal = this.closest('[data-modal]');
-        modal.classList.remove(modalActive);
-      })
-    })
-  })
+function openModalProfile() {
+  openModal(modalProfile)
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+};
+
+btnCloseModal.forEach((btn) => {
+  const modal = btn.closest('.modal');
+  btn.addEventListener('click', () => closeModal(modal));
 })
 
-// При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
-modalForm.addEventListener('submit', function(evt) {
-  evt.preventDefault();
+btnOpenModalProfile.addEventListener('click', openModalProfile);
+btnOpenModalAddFoto.addEventListener('click', () => openModal(modalAddFoto));
 
+// При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
+function saveInfoProfile (evt) {
+  evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  
-  const modal = this.closest('[data-modal]');
-  modal.classList.remove(modalActive);
-});
+  closeModal(modalProfile);
+}
 
-// слушатель с функцией, чтобы закрыть попап по нажатию оверлея
-// modal.addEventListener('mousedown',(event) => {
-//   if(!modalContent.contains(event.target))  {
-//     modal.classList.remove(modalOpen);
-//   }
-// });
+formModalProfile.addEventListener('submit', saveInfoProfile);
+
+// функция сохранения новой карточки
+const saveNewCard = function(evt) {
+  evt.preventDefault();
+  cardsList.prepend(createCard(imageName.value, imageSrc.value));
+  evt.target.reset();
+  closeModal(modalAddFoto);
+}
+
+formSaveNewFoto.addEventListener('submit', saveNewCard)
 
 
 // Массив с готовыми карточками
@@ -114,10 +126,10 @@ const createCard = function(name, link) {
     });
 
     const showImageFull = function () {
-      cardImage.src = link;
-      cardImage.alt = name;
-      cardName.textContent = name;
-      modalFullFoto.classList.add(modalActive);
+      fullImg.src = link;
+      fullImg.alt = name;
+      fullText.textContent = name;
+      openModal(modalFullFoto);
     };
 
     cardImage.addEventListener('click',showImageFull )
@@ -131,19 +143,9 @@ const loadCards = function () {
     cardsList.append(createCard(card.name, card.link));
   });
 }
-
 loadCards();
 
 
 
-// функция сохранения новой карточки
-const saveNewCard = function(evt) {
-  evt.preventDefault();
-  cardsList.prepend(createCard(imageName.value, imageSrc.value));
-  evt.target.reset();
-  modalAddFoto.classList.remove(modalActive);
-}
-
-formSaveNewFoto.addEventListener('submit', saveNewCard)
 
 

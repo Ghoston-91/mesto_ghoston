@@ -94,7 +94,7 @@
     <div class="modal__content">
       <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
       <h3 class="modal__title">Редактировать профиль</h3>
-      <form name="form" class="modal__form">
+      <form name="form" class="modal__form modalFormProfile">
         <input type="text" placeholder="Введите ваше имя" name="name_profile" class="modal__input modal__input_type_name">
         <input type="text" placeholder="Введите вашу профессию" name="job_profile" class="modal__input modal__input_type_job">
         <button type="submit" class="modal__save">Сохранить</button>
@@ -115,12 +115,10 @@
     </div>
   </section>
 
-  <section class="modal modalFullFoto">
-    <div class="modal__content">
+  <section class="modal modal__full-foto">
       <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
-      <img src="" alt="" class="card__img">
-      <h3 class="card__title"></h3>
-    </div>
+      <img src="" alt="" class="card__img fullImg">
+      <h3 class="card__title fullText"></h3>
   </section>
 
   <template id="template">
