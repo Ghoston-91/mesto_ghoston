@@ -20,9 +20,9 @@ const imageSrc = modalAddFoto.querySelector('.modal__input_type_src');
 
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
-const btnCloseModal = document.querySelectorAll('.modal__close');
+const btnsCloseModals = document.querySelectorAll('.modal__close');
 
-
+const template = document.querySelector('#template').content;
 
 // открытие модалки
 const openModal = function(modal) {
@@ -42,7 +42,7 @@ function openModalProfile() {
 };
 
 // закрытие модалок по крестику
-btnCloseModal.forEach((btn) => {
+btnsCloseModals.forEach((btn) => {
   const modal = btn.closest('.modal');
   btn.addEventListener('click', () => closeModal(modal));
 })
@@ -104,7 +104,7 @@ const initialCards = [
 const cardsList = document.querySelector('.cards__list');
 
 const createCard = function(name, link) {
-  const template = document.querySelector('#template').content;
+ 
   const cardElement = template.querySelector('.card').cloneNode(true);
   const cardName = cardElement.querySelector('.card__title');
   const cardImage = cardElement.querySelector('.card__img');
