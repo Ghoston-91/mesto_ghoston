@@ -6,8 +6,8 @@ const modalAddFoto = document.querySelector('.modalAddFoto');
 const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
 
 const modalShowImage = document.querySelector('.modal_show-image');
-const fullImg = document.querySelector('.modal__full-image');
-const fullText = document.querySelector('.modal__full-text');
+const fullImg = document.querySelector('.modal__image-full');
+const fullText = document.querySelector('.modal__text-full');
 
 const profile = document.querySelector('.profile');
 const nameProfile = profile.querySelector('.profile__name');
@@ -15,8 +15,8 @@ const jobProfile = profile.querySelector('.profile__job');
 const nameInput = modalProfile.querySelector('.modal__input_type_name');
 const jobInput = modalProfile.querySelector('.modal__input_type_job');
 
-const imageName = modalAddFoto.querySelector('.name_foto');
-const imageSrc = modalAddFoto.querySelector('.type_src');
+const imageName = modalAddFoto.querySelector('.modal__input_type_foto');
+const imageSrc = modalAddFoto.querySelector('.modal__input_type_src');
 
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
