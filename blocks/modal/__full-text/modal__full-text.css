@@ -1,0 +1,12 @@
+.modal__full-text {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+  color: #fff;
+  padding: 10px 0 0;
+  margin: 0;
+  max-width: calc(90% - 48px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,48 +1,49 @@
 const modalActive = 'modal_active'; // переменная, чтобы активировать попап
 
-// const btnOpenModal = document.querySelectorAll('[data-modal-button]');
+const modalProfile = document.querySelector('.modalProfile');
+const formModalProfile = modalProfile.querySelector('.modalFormProfile');
+const modalAddFoto = document.querySelector('.modalAddFoto');
+const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
 
+const modalShowImage = document.querySelector('.modal_show-image');
+const fullImg = document.querySelector('.modal__full-image');
+const fullText = document.querySelector('.modal__full-text');
 
-const formModalProfile = document.querySelector('.modalFormProfile');
 
 const profile = document.querySelector('.profile');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__job');
-const nameInput = document.querySelector('.modal__input_type_name');
-const jobInput = document.querySelector('.modal__input_type_job');
+const nameInput = modalProfile.querySelector('.modal__input_type_name');
+const jobInput = modalProfile.querySelector('.modal__input_type_job');
 
-const imageName = document.querySelector('.name_foto');
-const imageSrc = document.querySelector('.type_src');
+const imageName = modalAddFoto.querySelector('.name_foto');
+const imageSrc = modalAddFoto.querySelector('.type_src');
 
-const modalFullFoto = document.querySelector('.modal__full-foto');
-
-const modalProfile = document.querySelector('.modalProfile');
-const modalAddFoto = document.querySelector('.modalAddFoto');
-const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
 
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
-
 const btnCloseModal = document.querySelectorAll('.modal__close');
 
-const fullImg = document.querySelector('.fullImg');
-const fullText = document.querySelector('.fullText');
 
 
+// открытие модалки
 const openModal = function(modal) {
   modal.classList.add(modalActive);
 };
 
+// закрытие модалки
 const closeModal = function(modal) {
   modal.classList.remove(modalActive);
 };
 
+// открытие модалки Профиля и присвоение в поля ввода - данных из профиля
 function openModalProfile() {
   openModal(modalProfile)
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 };
 
+// закрытие модалок по крестику
 btnCloseModal.forEach((btn) => {
   const modal = btn.closest('.modal');
   btn.addEventListener('click', () => closeModal(modal));
@@ -129,7 +130,7 @@ const createCard = function(name, link) {
       fullImg.src = link;
       fullImg.alt = name;
       fullText.textContent = name;
-      openModal(modalFullFoto);
+      openModal(modalShowImage);
     };
 
     cardImage.addEventListener('click',showImageFull )
@@ -138,6 +139,7 @@ const createCard = function(name, link) {
 
 };
 
+// загрузка карточек из массива
 const loadCards = function () {
   initialCards.forEach(function (card) {
     cardsList.append(createCard(card.name, card.link));
