@@ -47,3 +47,8 @@
 @import url('../blocks/modal/__text-full/modal__text-full.css');
 @import url('../blocks/modal/_show-image/modal_show-image.css');
 @import url('../blocks/modal/__close/_image/modal__close_image.css');
+
+@import url('../blocks/modal/__input/_type/modal__input_type_error.css');
+@import url('../blocks/modal/__input/_active/modal__input-error_active.css');
+@import url('../blocks/error/error.css');
+@import url('../blocks/modal/__save/_disabled/modal__save_disabled.css');

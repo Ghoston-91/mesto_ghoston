@@ -24,6 +24,7 @@ const btnsCloseModals = document.querySelectorAll('.modal__close');
 
 const template = document.querySelector('#template').content;
 
+
 // открытие модалки
 const openModal = function(modal) {
   modal.classList.add(modalActive);
@@ -49,6 +50,8 @@ btnsCloseModals.forEach((btn) => {
 
 btnOpenModalProfile.addEventListener('click', openModalProfile);
 btnOpenModalAddFoto.addEventListener('click', () => openModal(modalAddFoto));
+
+
 
 // При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
 function saveInfoProfile (evt) {
@@ -144,8 +147,3 @@ const loadCards = function () {
   });
 }
 loadCards();
-
-
-
-
-
