@@ -2,25 +2,25 @@ const modalActive = 'modal_active'; // переменная, чтобы акти
 
 const modalProfile = document.querySelector('.modalProfile');
 const formModalProfile = modalProfile.querySelector('.modalFormProfile');
-const modalAddFoto = document.querySelector('.modalAddFoto');
-const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
-
-const modalShowImage = document.querySelector('.modal_show-image');
-const fullImg = document.querySelector('.modal__image-full');
-const fullText = document.querySelector('.modal__text-full');
-
 const profile = document.querySelector('.profile');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__job');
 const nameInput = modalProfile.querySelector('.modal__input_type_name');
 const jobInput = modalProfile.querySelector('.modal__input_type_job');
 
+const modalAddFoto = document.querySelector('.modalAddFoto');
+const formSaveNewFoto = modalAddFoto.querySelector('.modal__form');
 const imageName = modalAddFoto.querySelector('.modal__input_type_foto');
 const imageSrc = modalAddFoto.querySelector('.modal__input_type_src');
 
+const modalShowImage = document.querySelector('.modal_show-image');
+const fullImg = document.querySelector('.modal__image-full');
+const fullText = document.querySelector('.modal__text-full');
+
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
-const btnsCloseModals = document.querySelectorAll('.modal__close');
+const btnSaveFoto = modalAddFoto.querySelector('.modal__save')
+const btnSaveFotoDisable = 'modal__save_disabled'
 
 const template = document.querySelector('#template').content;
 
@@ -28,12 +28,25 @@ const template = document.querySelector('#template').content;
 // открытие модалки
 const openModal = function(modal) {
   modal.classList.add(modalActive);
+  disableButton(btnSaveFoto, btnSaveFotoDisable);
+
+  document.addEventListener('keydown', closeModalPressEsc)
 };
 
 // закрытие модалки
 const closeModal = function(modal) {
   modal.classList.remove(modalActive);
+
+  document.removeEventListener('keydown', closeModalPressEsc)
 };
+
+// закрытие модалки на Esc
+function closeModalPressEsc(evt) {
+  if (evt.key === 'Escape') {
+    const modalActive = document.querySelector('.modal_active');
+    closeModal(modalActive)
+  }
+}
 
 // открытие модалки Профиля и присвоение в поля ввода - данных из профиля
 function openModalProfile() {
@@ -42,15 +55,33 @@ function openModalProfile() {
   jobInput.value = jobProfile.textContent;
 };
 
-// закрытие модалок по крестику
-btnsCloseModals.forEach((btn) => {
-  const modal = btn.closest('.modal');
-  btn.addEventListener('click', () => closeModal(modal));
-})
-
 btnOpenModalProfile.addEventListener('click', openModalProfile);
 btnOpenModalAddFoto.addEventListener('click', () => openModal(modalAddFoto));
 
+// закрытие модалок по крестику или оверлею
+modalProfile.addEventListener('mousedown', (evt) => {
+  const btnCloseModal = modalProfile.querySelector('.modal__close')
+  const content = modalProfile.querySelector('.modal__content')
+  if (!content.contains(evt.target) || btnCloseModal === evt.target) {
+    closeModal(modalProfile)
+  }
+})
+
+modalAddFoto.addEventListener('mousedown', (evt) => {
+  const btnCloseModal = modalAddFoto.querySelector('.modal__close')
+  const content = modalAddFoto.querySelector('.modal__content')
+  if (!content.contains(evt.target) || btnCloseModal === evt.target) {
+    closeModal(modalAddFoto)
+  }
+})
+
+modalShowImage.addEventListener('mousedown', (evt) => {
+  const btnCloseModal = modalShowImage.querySelector('.modal__close')
+  const content = modalShowImage.querySelector('.modal__content-image')
+  if (!content.contains(evt.target) || btnCloseModal === evt.target) {
+    closeModal(modalShowImage)
+  }
+})
 
 
 // При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы

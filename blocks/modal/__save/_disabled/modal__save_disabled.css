@@ -1,7 +1,8 @@
 .modal__save_disabled {
-  background:  #E5E5E5;
+  background:  #fff;
   opacity: 0.2;
   color: #000;
+  border: solid 1px;
 
 }
 .modal__save_disabled:hover {
