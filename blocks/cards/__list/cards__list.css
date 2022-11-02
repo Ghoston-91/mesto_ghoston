@@ -6,13 +6,13 @@
   grid-template-rows: repeat(auto, minmax(min-content, max-content));
   gap: 20px 17px;
 }
-@media screen and (min-width: 596px) and (max-width: 900px) {
+@media screen and (min-width: 600px) and (max-width: 900px) {
   .cards__list {
     grid-template-columns: repeat(2, auto);
     justify-items: center;
   }
 }
-@media screen and (min-width: 320px) and (max-width: 595px) {
+@media screen and (min-width: 320px) and (max-width: 599px) {
   .cards__list {
     grid-template-columns: repeat(1, auto);
     justify-items: center;
