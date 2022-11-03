@@ -59,7 +59,7 @@ function handleOpenModalFoto() {
 // закрытие модалок по крестику или оверлею
 modals.forEach((modal) => {
   const btnCloseModal = modal.querySelector('.modal__close')
-  const content = modal.querySelector('.modal_container')
+  const content = modal.querySelector('.modal__container')
   modal.addEventListener('mousedown', (evt) => {
     if (!content.contains(evt.target) || btnCloseModal === evt.target) {
       closeModal(modal);
