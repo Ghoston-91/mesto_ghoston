@@ -13,7 +13,6 @@
     max-width: 340px;
   }
 }
-
 @media screen and (min-width: 320px) and (max-width: 684px) {
   .profile__job {
     text-align: center;

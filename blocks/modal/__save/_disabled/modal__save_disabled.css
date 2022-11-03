@@ -3,7 +3,6 @@
   opacity: 0.2;
   color: #000;
   border: solid 1px;
-
 }
 .modal__save_disabled:hover {
   cursor: default;
