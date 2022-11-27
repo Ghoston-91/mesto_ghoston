@@ -50,4 +50,4 @@ export class Card {
   _handleOpenPhotoModal = () => {
     this._openPhotoModal(this._link, this._name);
   } 
-}
+} 
