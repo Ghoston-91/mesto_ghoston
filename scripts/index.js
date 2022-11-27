@@ -1,4 +1,10 @@
+import { Card } from './card.js';
+import { modalActive, initialCards, configValidation } from './const.js';
+import { formValidation } from './FormValidator.js'
+
+
 const modals = document.querySelectorAll('.modal');
+const cardsList = document.querySelector('.cards__list');
 
 const profile = document.querySelector('.profile');
 const nameProfile = profile.querySelector('.profile__name');
@@ -16,29 +22,15 @@ const imageSrc = modalAddFoto.querySelector('.modal__input_type_src');
 
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
-const btnSaveFoto = modalAddFoto.querySelector('.modal__save')
 
-const template = document.querySelector('#template').content;
-const cardsList = document.querySelector('.cards__list');
+const formProfileValidation = new formValidation(configValidation, formModalProfile);
+const formAddFotoValidation = new formValidation(configValidation, formAddFoto);
+
 
 // открытие модалки
 const openModal = function(modal) {
   modal.classList.add(modalActive);
   document.addEventListener('keydown', handleCloseModalPressEsc);
-};
-
-// закрытие модалки
-const closeModal = function(modal) {
-  modal.classList.remove(modalActive);
-  document.removeEventListener('keydown', handleCloseModalPressEsc);
-};
-
-// закрытие модалки на Esc
-function handleCloseModalPressEsc(evt) {
-  if (evt.key === 'Escape') {
-    const modalActive = document.querySelector('.modal_active');
-    closeModal(modalActive);
-  }
 };
 
 // открытие модалки Профиля и присвоение в поля ввода - данных из профиля
@@ -53,7 +45,21 @@ function handleOpenModalFoto() {
   imageName.value = "";
   imageSrc.value = "";
   openModal(modalAddFoto);
-  disableButton(btnSaveFoto, btnSaveFotoDisable);
+  formAddFotoValidation.disableButton();
+};
+
+// закрытие модалки
+const closeModal = function(modal) {
+  modal.classList.remove(modalActive);
+  document.removeEventListener('keydown', handleCloseModalPressEsc);
+};
+
+// закрытие модалки на Esc
+function handleCloseModalPressEsc(evt) {
+  if (evt.key === 'Escape') {
+    const modalActive = document.querySelector('.modal_active');
+    closeModal(modalActive);
+  }
 };
 
 // закрытие модалок по крестику или оверлею
@@ -74,57 +80,41 @@ function handleSaveInfoProfile (evt) {
   closeModal(modalProfile);
 };
 
+// функция открытия картинки в отдельном окне
+function openPhotoModal(link, name){
+  const modalShowImage = document.querySelector('.modal_show-image');
+  const fullImg = modalShowImage.querySelector('.modal__image-full');
+  const fullText = modalShowImage.querySelector('.modal__text-full');
+	fullImg.src = link;
+	fullImg.alt = name;
+  fullText.textContent = name;
+	openModal(modalShowImage);
+};
+
 // функция сохранения новой карточки
 const handleSaveNewCard = function(evt) {
   evt.preventDefault();
-  cardsList.prepend(createCard(imageName.value, imageSrc.value));
-  evt.target.reset();
+  const card = {name: imageName.value, link: imageSrc.value}
+  createCard(card);
   closeModal(modalAddFoto);
+  evt.target.reset();
 };
 
 // функция создания карточки
-const createCard = function(name, link) {
- 
-  const cardElement = template.querySelector('.card').cloneNode(true);
-  const cardName = cardElement.querySelector('.card__title');
-  const cardImage = cardElement.querySelector('.card__img');
-  const cardLikeActive = 'card__like_active';
-
-  cardName.textContent = name;
-  cardImage.src = link;
-  cardImage.alt = name;
-
-  const showImageFull = function () {
-    const modalShowImage = document.querySelector('.modal_show-image');
-    const fullImg = modalShowImage.querySelector('.modal__image-full');
-    const fullText = modalShowImage.querySelector('.modal__text-full');
-    fullImg.src = link;
-    fullImg.alt = name;
-    fullText.textContent = name;
-    openModal(modalShowImage);
-  };
-
-  cardElement.querySelector('.card__like').addEventListener('click', function(evt){
-    evt.target.classList.toggle(cardLikeActive);
-  });
-
-  cardElement.querySelector('.card__delete').addEventListener('click', function(evt) {
-    evt.target.closest('.card').remove();
-  });
-
-  cardImage.addEventListener('click', showImageFull );
-
-  return cardElement;
-};
+function createCard(data) {
+  const newCard = new Card(data, '#template', openPhotoModal);
+  const cardElement = newCard.generateCard();
+  cardsList.prepend(cardElement);
+}
 
 // загрузка карточек из массива
-const loadCards = function () {
-  initialCards.forEach(function (card) {
-    cardsList.append(createCard(card.name, card.link));
-  });
-};
-
+function loadCards() {
+  initialCards.forEach(createCard);
+}
 loadCards();
+
+formProfileValidation.enableValidation();
+formAddFotoValidation.enableValidation();
 
 btnOpenModalProfile.addEventListener('click', handleOpenModalProfile);
 btnOpenModalAddFoto.addEventListener('click', handleOpenModalFoto);
