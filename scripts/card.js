@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, templateSelector, openPhotoModal) {
+  constructor(data, templateSelector, openPhotoModal){
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -12,7 +12,7 @@ export class Card {
     .querySelector('.card')
     .cloneNode(true);
     return cardElement;
-  }
+  } 
 
   generateCard() {
     this._element = this._getTemplate();

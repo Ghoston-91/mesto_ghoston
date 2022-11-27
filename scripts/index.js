@@ -116,4 +116,4 @@ formAddFotoValidation.enableValidation();
 btnOpenModalProfile.addEventListener('click', handleOpenModalProfile);
 btnOpenModalAddFoto.addEventListener('click', handleOpenModalFoto);
 formModalProfile.addEventListener('submit', handleSaveInfoProfile);
-formAddFoto.addEventListener('submit', handleSaveNewCard);
+formAddFoto.addEventListener('submit', handleSaveNewCard); 

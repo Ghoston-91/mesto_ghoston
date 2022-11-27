@@ -6,7 +6,7 @@ export class FormValidator {
     this._formSubmitButtonElement = this._formElement.querySelector(this._config.submitButtonSelector);
     this._disabledSubmitButtonClass = config.disabledSubmitButtonClass;
     this._invalidInputClass = config.invalidInputClass;
-  }
+  } 
 
 _showInputError = (inputElement, errorElement, invalidInputClass) => {
     inputElement.classList.add(invalidInputClass);
