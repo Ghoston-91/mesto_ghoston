@@ -1,5 +1,5 @@
 const modalActive = 'modal_active'; // переменная, чтобы активировать попап 
-
+ 
 // Массив с готовыми карточками
 const initialCards = [
   {

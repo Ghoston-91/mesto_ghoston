@@ -1,5 +1,5 @@
-import { Card } from './CARD.js'; 
-import { modalActive, initialCards, configValidation } from './const.js';
+import { Card } from './Card.js'; 
+import { modalActive, initialCards, configValidation } from './Const.js';
 import { FormValidator } from './FormValidator.js'
 
 const modals = document.querySelectorAll('.modal');
