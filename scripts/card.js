@@ -4,7 +4,6 @@ export class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._openPhotoModal = openPhotoModal;
-
   }
   _getTemplate() {
     const cardElement = document

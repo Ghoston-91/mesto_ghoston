@@ -1,7 +1,6 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import { modalActive, initialCards, configValidation } from './const.js';
-import { formValidation } from './FormValidator.js'
-
+import { FormValidator } from './FormValidator.js'
 
 const modals = document.querySelectorAll('.modal');
 const cardsList = document.querySelector('.cards__list');
@@ -20,12 +19,15 @@ const formAddFoto = modalAddFoto.querySelector('.modalFormAddFoto');
 const imageName = modalAddFoto.querySelector('.modal__input_type_foto');
 const imageSrc = modalAddFoto.querySelector('.modal__input_type_src');
 
+const modalShowImage = document.querySelector('.modal_show-image');
+const fullImg = modalShowImage.querySelector('.modal__image-full');
+const fullText = modalShowImage.querySelector('.modal__text-full');
+
 const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
 
-const formProfileValidation = new formValidation(configValidation, formModalProfile);
-const formAddFotoValidation = new formValidation(configValidation, formAddFoto);
-
+const formProfileValidation = new FormValidator(configValidation, formModalProfile);
+const formAddFotoValidation = new FormValidator(configValidation, formAddFoto);
 
 // открытие модалки
 const openModal = function(modal) {
@@ -82,9 +84,6 @@ function handleSaveInfoProfile (evt) {
 
 // функция открытия картинки в отдельном окне
 function openPhotoModal(link, name){
-  const modalShowImage = document.querySelector('.modal_show-image');
-  const fullImg = modalShowImage.querySelector('.modal__image-full');
-  const fullText = modalShowImage.querySelector('.modal__text-full');
 	fullImg.src = link;
 	fullImg.alt = name;
   fullText.textContent = name;
@@ -93,25 +92,23 @@ function openPhotoModal(link, name){
 
 // функция сохранения новой карточки
 const handleSaveNewCard = function(evt) {
-  evt.preventDefault();
-  const card = {name: imageName.value, link: imageSrc.value}
-  createCard(card);
-  closeModal(modalAddFoto);
+  cardsList.prepend(createCard({name: imageName.value, link: imageSrc.value}));
+  closeModal(modalAddFoto, evt);
   evt.target.reset();
+  formAddFotoValidation.disableButton();
 };
 
 // функция создания карточки
 function createCard(data) {
   const newCard = new Card(data, '#template', openPhotoModal);
   const cardElement = newCard.generateCard();
-  cardsList.prepend(cardElement);
+  return cardElement;
 }
 
 // загрузка карточек из массива
-function loadCards() {
-  initialCards.forEach(createCard);
-}
-loadCards();
+initialCards.forEach((data) => {
+  cardsList.prepend(createCard(data));
+});
 
 formProfileValidation.enableValidation();
 formAddFotoValidation.enableValidation();

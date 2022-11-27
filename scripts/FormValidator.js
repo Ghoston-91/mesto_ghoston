@@ -1,4 +1,4 @@
-export class formValidation {
+export class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -37,7 +37,6 @@ _checkInputValidity = (inputElement, errorElement, invalidInputClass) => {
 }
 
 _hasInvalidInput = () => this._inputs.some((input) => !input.validity.valid)
-
 
 _handleFormInput = (evt) => {
     const inputElement = evt.target;
