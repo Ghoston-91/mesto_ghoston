@@ -1,11 +1,14 @@
 import '../src/index.css';
 
-import { Card } from './scripts/components/Card.js';
+import Card from './scripts/components/Card.js';
+import FormValidator from './scripts/components/FormValidator.js'
+import Section from './scripts/components/Section.js';
+import Modal from './scripts/components/Modal.js';
+import ModalWithImage from './scripts/components/ModalWithImage.js';
+import ModalWithForm from './scripts/components/ModalWithForm.js';
+import UserInfo from './scripts/components/UserInfo';
 import { modalActive, initialCards, configValidation } from './scripts/utils/const.js';
-import { FormValidator } from './scripts/components/FormValidator.js'
-import { Section } from './scripts/components/Section.js';
-import { Popup } from './scripts/components/Popup.js';
-import { PopupWithImage } from './scripts/components/PopupWithImage';
+
 
 const modals = document.querySelectorAll('.modal');
 const cardsList = document.querySelector('.cards__list');
@@ -34,13 +37,62 @@ const btnOpenModalAddFoto = document.querySelector('.add-foto');
 const formProfileValidation = new FormValidator(configValidation, formModalProfile);
 const formAddFotoValidation = new FormValidator(configValidation, formAddFoto);
 
-// открытие модалки
-// const openModal = function(modal) {
-//   modal.classList.add(modalActive);
-//   document.addEventListener('keydown', handleCloseModalPressEsc);
-// };
 
-const openPopup = new Popup(modalProfile)
+// экземпляр модалки modalShowImage
+const openPhotoModal = new ModalWithImage(modalShowImage)
+openPhotoModal.setEventListeners();
+
+// Берем данные из профиля
+const profileInfo = new UserInfo ( {
+  nameProfile: nameProfile,
+  jobProfile: jobProfile
+});
+// экземпляр формы
+const dataModalProfile = new ModalWithForm (modalProfile, {
+  handleSaveInfoProfile: (data) => {
+    profileInfo.setUserInfo({
+      name: data.name,
+      job: data.job
+    })
+  }
+})
+dataModalProfile.setEventListeners();
+
+
+// открытие модалки Профиля и присвоение в поля ввода - данных из профиля
+const handleOpenModalProfile = (modal) => {
+  const {name, job} = profileInfo.getUserInfo();
+  nameInput.value = name;
+  jobInput.value = job;
+  formProfileValidation.disableButton();
+  modal.openModal()
+};
+
+btnOpenModalProfile.addEventListener('click', () => {
+  handleOpenModalProfile(dataModalProfile)
+});
+
+
+
+// загрузка карточек из массива
+const defaultCardList = new Section({items: initialCards, renderer:(data) => {
+  const newCard = new Card(data, '#template', openPhotoModal.openModal);
+  const cardElement = newCard.generateCard();
+  
+  defaultCardList.addItem(cardElement);
+}}, cardsList)
+
+defaultCardList.renderItems();
+
+// // функция создания карточки
+function createCard(data) {
+  const newCard = new Card(data, '#template', openPhotoModal);
+  const cardElement = newCard.generateCard();
+  return cardElement;
+}
+
+formProfileValidation.enableValidation();
+formAddFotoValidation.enableValidation();
 
 
 // открытие модалки Профиля и присвоение в поля ввода - данных из профиля
@@ -58,29 +110,6 @@ const openPopup = new Popup(modalProfile)
 //   formAddFotoValidation.disableButton();
 // };
 
-// закрытие модалки
-// const closeModal = function(modal) {
-//   modal.classList.remove(modalActive);
-//   document.removeEventListener('keydown', handleCloseModalPressEsc);
-// };
-
-// закрытие модалки на Esc
-// function handleCloseModalPressEsc(evt) {
-//   if (evt.key === 'Escape') {
-//     const modalActive = document.querySelector('.modal_active');
-//     closeModal(modalActive);
-//   }
-// };
-
-// закрытие модалок по крестику или оверлею
-// modals.forEach((modal) => {
-//   const btnCloseModal = modal.querySelector('.modal__close')
-//   const content = modal.querySelector('.modal__container')
-//   modal.addEventListener('mousedown', (evt) => {
-//     if (!content.contains(evt.target) || btnCloseModal === evt.target) {
-//       closeModal(modal);
-//   }})
-// });
 
 // При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
 // function handleSaveInfoProfile (evt) {
@@ -90,56 +119,11 @@ const openPopup = new Popup(modalProfile)
 //   closeModal(modalProfile);
 // };
 
-// функция открытия картинки в отдельном окне
-// function openPhotoModal(link, name){
-// 	fullImg.src = link;
-// 	fullImg.alt = name;
-//   fullText.textContent = name;
-// 	openModal(modalShowImage);
+// // функция сохранения новой карточки
+// const handleSaveNewCard = function(evt) {
+//   cardsList.prepend(createCard({name: imageName.value, link: imageSrc.value}));
+//   closeModal(modalAddFoto, evt);
+//   evt.target.reset();
+//   formAddFotoValidation.disableButton();
 // };
-
-
-// Экземпляр модалки с фото
-const openPhotoModal = new PopupWithImage(modalShowImage)
-
-// функция сохранения новой карточки
-const handleSaveNewCard = function(evt) {
-  cardsList.prepend(createCard({name: imageName.value, link: imageSrc.value}));
-  closeModal(modalAddFoto, evt);
-  evt.target.reset();
-  formAddFotoValidation.disableButton();
-};
-
-// загрузка карточек из массива
-const defaultCardList = new Section({items: initialCards, renderer:(data) => {
-  const newCard = new Card(data, '#template', openPhotoModal.open);
-  const cardElement = newCard.generateCard();
-  
-  defaultCardList.addItem(cardElement);
-}}, cardsList)
-
-defaultCardList.renderItems();
-
-
-
-// функция создания карточки
-function createCard(data) {
-  const newCard = new Card(data, '#template', openPhotoModal);
-  const cardElement = newCard.generateCard();
-  return cardElement;
-}
-
-// загрузка карточек из массива
-// initialCards.forEach((data) => {
-//   cardsList.prepend(createCard(data));
-// });
-
-formProfileValidation.enableValidation();
-formAddFotoValidation.enableValidation();
-
-btnOpenModalProfile.addEventListener('click', openPopup.open);
-// btnOpenModalAddFoto.addEventListener('click', handleOpenModalFoto);
-// formModalProfile.addEventListener('submit', handleSaveInfoProfile);
-formAddFoto.addEventListener('submit', handleSaveNewCard); 
-
 

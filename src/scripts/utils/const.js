@@ -1,4 +1,10 @@
-const modalActive = 'modal_active'; // переменная, чтобы активировать попап 
+const modalActive = 'modal_active'; // переменная, чтобы активировать попап
+const modalShowImage = document.querySelector('.modal_show-image');
+const fullImg = modalShowImage.querySelector('.modal__image-full');
+const fullText = modalShowImage.querySelector('.modal__text-full');
+
+const btnCloseModal = document.querySelector('.modal__close')
+const content = document.querySelector('.modal__container')
  
 // Массив с готовыми карточками
 const initialCards = [
@@ -37,4 +43,13 @@ const configValidation = {
   disabledSubmitButtonClass: 'modal__save_disabled',
 }; 
 
-export { modalActive, initialCards, configValidation };
+export { 
+  modalActive, 
+  initialCards, 
+  configValidation, 
+  modalShowImage, 
+  fullImg, 
+  fullText, 
+  btnCloseModal,
+  content
+ };

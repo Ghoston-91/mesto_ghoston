@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, templateSelector, openPhotoModal){
     this._name = data.name;
     this._link = data.link;
@@ -36,7 +36,7 @@ export class Card {
     this._deleteCard.addEventListener('click', () => {
       this._handeDeleteCard();
     })
-    this._elementImage.addEventListener('click', this._handleOpenPhotoModal)
+    this._elementImage.addEventListener('click', () => this._handleOpenPhotoModal())
 }
 
   _handeLikeActive() {
