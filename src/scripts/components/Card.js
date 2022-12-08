@@ -36,7 +36,9 @@ export default class Card {
     this._deleteCard.addEventListener('click', () => {
       this._handeDeleteCard();
     })
-    this._elementImage.addEventListener('click', () => this._handleOpenPhotoModal())
+    this._elementImage.addEventListener('click', () => {
+      this._handleOpenPhotoModal()
+    })
 }
 
   _handeLikeActive() {

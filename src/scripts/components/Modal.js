@@ -8,7 +8,7 @@ export default class Modal {
 
   openModal() {
     this._modal.classList.add(modalActive);
-    document.addEventListener('keydown', this._handleEscClose.bind);
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   closeModal() {

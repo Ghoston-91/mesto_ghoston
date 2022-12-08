@@ -49,7 +49,7 @@ const profileInfo = new UserInfo ( {
 });
 // экземпляр формы
 const dataModalProfile = new ModalWithForm (modalProfile, {
-  handleSaveInfoProfile: (data) => {
+  handleSaveInfo: (data) => {
     profileInfo.setUserInfo({
       name: data.name,
       job: data.job
@@ -72,21 +72,37 @@ btnOpenModalProfile.addEventListener('click', () => {
   handleOpenModalProfile(dataModalProfile)
 });
 
+const saveNewCard = new ModalWithForm(modalAddFoto, 
+  {handleSaveInfo: (dataInputs) => {
+  cardList.addItem(createCard({name: dataInputs.name, link: dataInputs.link}))
+}})
+saveNewCard.setEventListeners()
+// const saveNewCard = new ModalWithForm (modalAddFoto, {
+//   handleSaveInfo: (value) => {
+//     defaultCardList.addItem(createCard({
+//       link: value.imageSrc,
+//       name: value.imageName
+//     }))
+//   }
+// })
+// saveNewCard.setEventListeners();
 
-
-// загрузка карточек из массива
-const defaultCardList = new Section({items: initialCards, renderer:(data) => {
-  const newCard = new Card(data, '#template', openPhotoModal.openModal);
-  const cardElement = newCard.generateCard();
+btnOpenModalAddFoto.addEventListener('click', () => {
+  saveNewCard.openModal();
   
-  defaultCardList.addItem(cardElement);
-}}, cardsList)
+  formAddFotoValidation.disableButton();
+})
 
-defaultCardList.renderItems();
+
+
+const cardList = new Section({items: initialCards, renderer:(data) => {
+  cardList.addItem(createCard(data))}}, cardsList)
+
+cardList.renderItems()
 
 // // функция создания карточки
 function createCard(data) {
-  const newCard = new Card(data, '#template', openPhotoModal);
+  const newCard = new Card(data, '#template', openPhotoModal.openModal);
   const cardElement = newCard.generateCard();
   return cardElement;
 }
@@ -95,12 +111,6 @@ formProfileValidation.enableValidation();
 formAddFotoValidation.enableValidation();
 
 
-// открытие модалки Профиля и присвоение в поля ввода - данных из профиля
-// function handleOpenModalProfile() {
-//   openModal(modalProfile);
-//   nameInput.value = nameProfile.textContent;
-//   jobInput.value = jobProfile.textContent;
-// };
 
 // открытие модалки Фото, обнуление полей и изначальная блокировка кнопки "Создать"
 // function handleOpenModalFoto() {
@@ -110,15 +120,6 @@ formAddFotoValidation.enableValidation();
 //   formAddFotoValidation.disableButton();
 // };
 
-
-// При нажатии на Сохранить - присвоить данные из инпута - в профиль; запрет на обновление страницы
-// function handleSaveInfoProfile (evt) {
-//   evt.preventDefault();
-//   nameProfile.textContent = nameInput.value;
-//   jobProfile.textContent = jobInput.value;
-//   closeModal(modalProfile);
-// };
-
 // // функция сохранения новой карточки
 // const handleSaveNewCard = function(evt) {
 //   cardsList.prepend(createCard({name: imageName.value, link: imageSrc.value}));
@@ -126,4 +127,3 @@ formAddFotoValidation.enableValidation();
 //   evt.target.reset();
 //   formAddFotoValidation.disableButton();
 // };
-

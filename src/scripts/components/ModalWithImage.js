@@ -12,4 +12,4 @@ export default class ModalWithImage extends Modal {
     fullText.textContent = name;
     modalShowImage.classList.add(modalActive)
   }
-}
+  }
