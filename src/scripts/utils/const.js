@@ -1,11 +1,3 @@
-const modalActive = 'modal_active'; // переменная, чтобы активировать попап
-const modalShowImage = document.querySelector('.modal_show-image');
-const fullImg = modalShowImage.querySelector('.modal__image-full');
-const fullText = modalShowImage.querySelector('.modal__text-full');
-
-const btnCloseModal = document.querySelector('.modal__close')
-const content = document.querySelector('.modal__container')
- 
 // Массив с готовыми карточками
 const initialCards = [
   {
@@ -41,15 +33,55 @@ const configValidation = {
   invalidInputClass: 'modal__input_type_error',
   submitButtonSelector: '.modal__save',
   disabledSubmitButtonClass: 'modal__save_disabled',
-}; 
+};
+
+// переменные, которые используются в других файлах
+const modalActive = 'modal_active'; // переменная, чтобы активировать попап
+const content = document.querySelector('.modal__container')
+const cardsList = document.querySelector('.cards__list');
+const profile = document.querySelector('.profile');
+const nameProfile = profile.querySelector('.profile__name');
+const jobProfile = profile.querySelector('.profile__job');
+
+const modalProfile = document.querySelector('.modalProfile');
+const formModalProfile = modalProfile.querySelector('.modalFormProfile');
+const nameInput = modalProfile.querySelector('.modal__input_type_name');
+const jobInput = modalProfile.querySelector('.modal__input_type_job');
+
+const modalShowImage = document.querySelector('.modal_show-image');
+const fullImg = modalShowImage.querySelector('.modal__image-full');
+const fullText = modalShowImage.querySelector('.modal__text-full');
+
+const modalAddFoto = document.querySelector('.modalAddFoto');
+const formAddFoto = modalAddFoto.querySelector('.modalFormAddFoto');
+
+const btnOpenModalProfile = document.querySelector('.profile__edit');
+const btnOpenModalAddFoto = document.querySelector('.add-foto');
+const btnCloseModal = document.querySelector('.modal__close');
 
 export { 
-  modalActive, 
   initialCards, 
   configValidation, 
+  modalActive,
+  content,
+  cardsList,
+
   modalShowImage, 
   fullImg, 
   fullText, 
-  btnCloseModal,
-  content
+
+  nameProfile,
+  jobProfile,
+
+  modalProfile,
+  formModalProfile,
+  nameInput,
+  jobInput,
+
+  modalAddFoto,
+  formAddFoto,
+
+  btnOpenModalProfile,
+  btnOpenModalAddFoto,
+  btnCloseModal
  };

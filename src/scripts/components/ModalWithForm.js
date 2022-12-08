@@ -13,7 +13,6 @@ export default class ModalWithForm extends Modal {
     this._inputList.forEach((input) => {
       formValues[input.name] = input.value
     });
-    
     return formValues
   }
 
