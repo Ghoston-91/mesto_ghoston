@@ -47,6 +47,7 @@ export default class Card {
 
   _handeDeleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _handleOpenPhotoModal = () => {

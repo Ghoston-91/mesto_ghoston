@@ -49,8 +49,6 @@ const nameInput = modalProfile.querySelector('.modal__input_type_name');
 const jobInput = modalProfile.querySelector('.modal__input_type_job');
 
 const modalShowImage = document.querySelector('.modal_show-image');
-const fullImg = modalShowImage.querySelector('.modal__image-full');
-const fullText = modalShowImage.querySelector('.modal__text-full');
 
 const modalAddFoto = document.querySelector('.modalAddFoto');
 const formAddFoto = modalAddFoto.querySelector('.modalFormAddFoto');
@@ -67,8 +65,6 @@ export {
   cardsList,
 
   modalShowImage, 
-  fullImg, 
-  fullText, 
 
   nameProfile,
   jobProfile,
