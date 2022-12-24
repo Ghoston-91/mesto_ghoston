@@ -5,6 +5,7 @@ export default class Modal {
     this._modal = modal;
     this._handleEscClose = this._handleEscClose.bind(this);
     this.openModal = this.openModal.bind(this)
+    this._btnSave = this._modal.querySelector('.modal__save')
   }
 
   openModal() {

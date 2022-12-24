@@ -13,15 +13,14 @@
 
     <main>
       <section class="profile section">
-        <img 
-        class="profile__avatar">
+        <div class="profile__avatar"></div>
 
         <div class="profile__info">
           <div class="profile__group-title">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button aria-label="profile-edit" type="button" class="profile__edit" data-modal-button="modal-1"></button>
           </div>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__job"></p>
         </div>
 
         <button aria-label="add-foto" type="button" class="add-foto" data-modal-button="modal-2"></button>
@@ -76,6 +75,28 @@
     </div>
   </div>
 
+  <div class="modal modal__confirm-delete"> 
+    <div class="modal__content modal__container">
+      <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
+      <h3 class="modal__title">Вы уверены?</h3>
+      <form name="modal__form" class="modal__form modal__form_confirm-delete" novalidate>
+        <button type="submit" class="modal__save">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal modalChangeAvatar" id="modal-2" data-modal>
+    <div class="modal__content modal__container">
+      <button aria-label="modal-close" type="button" class="modal__close" data-modal-close></button>
+      <h3 class="modal__title">Обновить аватар</h3>
+      <form name="modal__form" class="modal__form modalFormChangeAvatar" novalidate>
+        <input type="url" placeholder="Ссылка на картинку" name="src" class="modal__input modal__input_marginBottom modal__input_type_src" required>
+        <span class="error input-error-src"></span>
+        <button type="submit" class="modal__save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <template id="template">
     <ul class="element">
       <li class="card">
@@ -83,6 +104,7 @@
         <img alt="" class="card__img">
             <div class="card__down">
               <h2 class="card__title"></h2>
+              <p class="card__like-count"></p>
               <button aria-label="card-like" type="button" class="card__like"></button>
             </div>
       </li>

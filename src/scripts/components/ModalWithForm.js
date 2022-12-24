@@ -29,4 +29,12 @@ export default class ModalWithForm extends Modal {
     super.closeModal()
     this._modalForm.reset()
   }
+
+  loadingMessege(isLoading) {
+    if (isLoading) {
+      this._btnSave.textContent = "Сохранение..."
+    } else {
+      this._btnSave.textContent = "Сохранить"
+    }
+  }
 }

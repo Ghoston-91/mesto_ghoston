@@ -28,6 +28,7 @@
 @import url('../src/blocks/card/__like/card__like.css');
 @import url('../src/blocks/card/__like/_active/card__like_active.css');
 @import url('../src/blocks/card/__delete/card__delete.css');
+@import url('../src/blocks/card/__like-count/card__like-count.css');
 
 /* footer */
 @import url('../src/blocks/footer/footer.css');
@@ -40,6 +41,7 @@
 @import url('../src/blocks/modal/__content/modal__content.css');
 @import url('../src/blocks/modal/__form/modal__form.css');
 @import url('../src/blocks/modal/__input/modal__input.css');
+@import url('../src/blocks/modal/__input/_marginBottom/modal__input_marginBottom.css');
 @import url('../src/blocks/modal/__title/modal__title.css');
 @import url('../src/blocks/modal/__save/modal__save.css');
 @import url('../src/blocks/modal/__content-image/modal__content-image.css');
@@ -52,3 +54,5 @@
 @import url('../src/blocks/modal/__input/_active/modal__input-error_active.css');
 @import url('../src/blocks/error/error.css');
 @import url('../src/blocks/modal/__save/_disabled/modal__save_disabled.css');
+@import url('../src/blocks/modal/__confirm-delete/modal__confirm-delete.css');
+@import url('../src/blocks/modal/__form/_confirm-delete/modal__form_confirm-delete.css');
