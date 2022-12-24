@@ -29,7 +29,7 @@ const btnOpenModalProfile = document.querySelector('.profile__edit');
 const btnOpenModalAddFoto = document.querySelector('.add-foto');
 const btnCloseModal = document.querySelector('.modal__close');
 
-const modalConfirm = document.querySelector('.modal__confirm-delete')
+const modalConfirm = document.querySelector('.modal_confirm-delete')
 const modalChangeAvatar = document.querySelector('.modalChangeAvatar')
 const btnEditAvatar = document.querySelector('.profile__avatar')
 
