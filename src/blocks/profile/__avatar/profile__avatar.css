@@ -6,7 +6,6 @@
   width: 120px;
   height: 120px;
   position: relative;
-  /* background-image: url('../../../images/avatar.jpg'); */
 }
 
 .profile__avatar::after {

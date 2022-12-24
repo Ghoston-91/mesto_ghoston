@@ -54,5 +54,4 @@
 @import url('../src/blocks/modal/__input/_active/modal__input-error_active.css');
 @import url('../src/blocks/error/error.css');
 @import url('../src/blocks/modal/__save/_disabled/modal__save_disabled.css');
-@import url('../src/blocks/modal/__confirm-delete/modal__confirm-delete.css');
 @import url('../src/blocks/modal/__form/_confirm-delete/modal__form_confirm-delete.css');
