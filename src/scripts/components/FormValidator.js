@@ -57,6 +57,13 @@ _toggleButtonState = () => {
     }
   }
 
+  // resetValidation() {
+  //   this._toggleButtonState();
+  //   this._inputs.forEach((inputElement) => {
+  //     this._hideInputError(inputElement)
+  //   })
+  // }
+
 _setEventListeners = () => {
     this._formElement.addEventListener('submit', this._handleFormSubmit);
     this._inputs.forEach((inputElement) => {

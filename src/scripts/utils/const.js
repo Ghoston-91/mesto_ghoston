@@ -8,7 +8,6 @@ const configValidation = {
 };
 
 // переменные, которые используются в других файлах
-const modalActive = 'modal_active'; // переменная, чтобы активировать попап
 const content = document.querySelector('.modal__container')
 const cardsList = document.querySelector('.cards__list');
 const profile = document.querySelector('.profile');
@@ -35,7 +34,6 @@ const btnEditAvatar = document.querySelector('.profile__avatar')
 
 export { 
   configValidation, 
-  modalActive,
   content,
   cardsList,
 

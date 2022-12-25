@@ -42,8 +42,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
   userId = user._id;
   profileInfo.setUserInfo({
     name: user.name,
-    job: user.about,
-    avatar: user.avatar
+    job: user.about
   });
   cardList.renderItems(card.reverse())
   profileInfo.setUserAvatar(user.avatar)
@@ -73,7 +72,12 @@ const dataModalProfile = new ModalWithForm (modalProfile, {
         job: userData.about,
         avatar: userData.avatar
       })
-    }).finally(() => {
+      dataModalProfile.closeModal()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
       dataModalProfile.loadingMessege(false)
     })
 }
@@ -97,6 +101,9 @@ const modalAvatarProfile = new ModalWithForm(modalChangeAvatar, {
     .then((userData) => {
       profileInfo.setUserAvatar(userData.avatar);
       modalAvatarProfile.closeModal();
+    })
+    .catch((err) => {
+      console.log(err)
     })
     .finally(() => {
       modalAvatarProfile.loadingMessege(false)
@@ -125,6 +132,9 @@ const saveNewCard = new ModalWithForm(modalAddFoto, {
       cardList.addItem(createCard(card))
       saveNewCard.closeModal()
     })
+    .catch((err) => {
+      console.log(err)
+    })
     .finally(() => {
       saveNewCard.loadingMessege(false)
     })
@@ -142,21 +152,27 @@ const createCard = (data) => {
         newCard.handeDeleteCard();
         modalWithConfirm.closeModal();
       })
-    )}, 
-      handleLikeClick: (likes) => {
-        if(!likes) {
-          api.pressLikeOnCard(data._id)
-          .then((data) => {
-            newCard.countLikes(data)
-          })
-        } else {
-          api.deleteLike(data._id)
-          .then((data) => {
-            newCard.countLikes(data)
-          })
-        }
-      }
-  });
+      .catch((err) => {
+        console.log(err)
+      })
+  )}, 
+  handleLikeClick: (likes) => {
+    if(!likes) {
+      api.pressLikeOnCard(data._id)
+      .then((data) => {
+        newCard.countLikes(data)
+      })
+      .catch((err) => {
+        console.log(err)})
+    } else {
+      api.deleteLike(data._id)
+      .then((data) => {
+        newCard.countLikes(data)
+      })
+      .catch((err) => {
+        console.log(err)})
+    }
+  }});
   const cardElement = newCard.generateCard();
   return cardElement;
 }

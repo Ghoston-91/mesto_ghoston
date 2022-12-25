@@ -1,5 +1,3 @@
-import { modalActive } from "../utils/const.js";
-
 export default class Modal {
   constructor(modal) {
     this._modal = modal;
@@ -9,12 +7,12 @@ export default class Modal {
   }
 
   openModal() {
-    this._modal.classList.add(modalActive);
+    this._modal.classList.add('modal_active');
     document.addEventListener('keydown', this._handleEscClose);
   }
 
   closeModal() {
-    this._modal.classList.remove(modalActive);
+    this._modal.classList.remove('modal_active');
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
